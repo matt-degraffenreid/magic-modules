@@ -1,0 +1,25 @@
+resource "google_dialogflow_tool" "{{$.PrimaryResourceId}}" {
+  location     = "global"
+  tool_key     = "{{index $.Vars "tool_key"}}"
+  display_name = "Bot Call Summarizer"
+  description  = "Summarizes calls using client-side execution function"
+
+  function_spec {
+    method_type = "POST"
+    input_schema = jsonencode({
+      type = "object"
+      properties = {
+        conversation_id = { type = "string" }
+        agent_notes     = { type = "string" }
+      }
+      required = ["conversation_id"]
+    })
+    output_schema = jsonencode({
+      type = "object"
+      properties = {
+        summary_content = { type = "string" }
+        agent_suggestion = { type = "string" }
+      }
+    })
+  }
+}

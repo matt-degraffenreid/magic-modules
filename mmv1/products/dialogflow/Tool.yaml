@@ -1,0 +1,106 @@
+# Copyright 2026 Google Inc.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+---
+name: 'Tool'
+description: |
+  A Dialogflow Tool represents a functional entity that an LLM can use within the Dialogflow environment
+  to interact with external systems or perform specific actions.
+references:
+  guides:
+    'Official Documentation': 'https://cloud.google.com/agent-assist/docs'
+  api: 'https://cloud.google.com/dialogflow/es/docs/reference/rest/v2beta1/projects.locations.tools'
+base_url: 'projects/{{project}}/locations/{{location}}/tools'
+create_url: 'projects/{{project}}/locations/{{location}}/tools?toolId={{tool_id}}'
+self_link: '{{name}}'
+update_verb: 'PATCH'
+update_mask: true
+min_version: 'beta'
+
+custom_code:
+  pre_create: 'templates/terraform/pre_create/dialogflow_set_endpoint.go.tmpl'
+  pre_read: 'templates/terraform/pre_create/dialogflow_set_endpoint.go.tmpl'
+  pre_update: 'templates/terraform/pre_create/dialogflow_set_endpoint.go.tmpl'
+  pre_delete: 'templates/terraform/pre_create/dialogflow_set_endpoint.go.tmpl'
+  post_create: 'templates/terraform/post_create/set_computed_name.tmpl'
+  custom_import: 'templates/terraform/custom_import/self_link_as_name_set_project_and_location.go.tmpl'
+
+examples:
+  - name: 'dialogflow_tool_basic'
+    primary_resource_id: 'basic_tool'
+    vars:
+      tool_key: 'basic_tool_key'
+
+parameters:
+  - name: 'location'
+    type: String
+    required: true
+    immutable: true
+    url_param_only: true
+    description: |
+      The location of the tool.
+  - name: 'toolId'
+    type: String
+    default_from_api: true
+    url_param_only: true
+    custom_flatten: 'templates/terraform/custom_flatten/id_from_name.tmpl'
+    description: |
+      The ID to use for the tool, which will become the final component of the tool's resource name.
+
+properties:
+  - name: name
+    type: String
+    description: |
+      The unique identifier of the tool. Format: projects/<Project ID>/locations/<Location ID>/tools/<Tool ID>
+    output: true
+  - name: toolKey
+    type: String
+    required: true
+    immutable: true
+    description: |
+      The unique short name of the tool within the project.
+  - name: displayName
+    type: String
+    description: |
+      The human-readable name of the tool, unique within the project.
+  - name: description
+    type: String
+    description: |
+      A human-readable description of the tool.
+  - name: functionSpec
+    type: NestedObject
+    description: |
+      Describes a client-side executed function.
+    properties:
+      - name: methodType
+        type: Enum
+        description: |
+          The HTTP method type used for the function call.
+        enum_values:
+          - 'GET'
+          - 'POST'
+          - 'PUT'
+          - 'DELETE'
+          - 'PATCH'
+      - name: inputSchema
+        type: String
+        custom_expand: 'templates/terraform/custom_expand/json_schema.tmpl'
+        custom_flatten: 'templates/terraform/custom_flatten/json_schema.tmpl'
+        description: |
+          JSON schema that describes the input parameters required by the function.
+      - name: outputSchema
+        type: String
+        custom_expand: 'templates/terraform/custom_expand/json_schema.tmpl'
+        custom_flatten: 'templates/terraform/custom_flatten/json_schema.tmpl'
+        description: |
+          JSON schema that describes the expected output of the function.

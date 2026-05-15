@@ -1,0 +1,59 @@
+{
+"workflow_version": "1.2.0",
+"timestamps": {"started": "2026-05-15T20:58:21Z", "last_updated": "2026-05-15T21:10:12Z", "completed": "2026-05-15T21:10:12Z"},
+"mode": "initial_scan",
+"scan_level": "exhaustive",
+"project_root": "/usr/local/google/home/degraffenreid/development/github/magic-modules",
+"project_knowledge": "/usr/local/google/home/degraffenreid/development/github/magic-modules/docs",
+"completed_steps": [
+  {"step": "step_1", "status": "completed", "timestamp": "2026-05-15T21:01:01Z", "summary": "Classified as monolith with primary type cli"},
+  {"step": "step_2", "status": "completed", "timestamp": "2026-05-15T21:01:31Z", "summary": "Found 5 existing docs"},
+  {"step": "step_3", "status": "completed", "timestamp": "2026-05-15T21:01:40Z", "summary": "Tech stack: Go with YAML definitions"},
+  {"step": "step_4", "status": "completed", "timestamp": "2026-05-15T21:01:48Z", "summary": "Analyzed entry points and core logic"},
+  {"step": "step_5", "status": "completed", "timestamp": "2026-05-15T21:01:58Z", "summary": "Source tree documented"},
+  {"step": "step_6", "status": "completed", "timestamp": "2026-05-15T21:04:08Z", "summary": "Extracted dev and ops info"},
+  {"step": "step_8", "status": "completed", "timestamp": "2026-05-15T21:04:21Z", "summary": "Architecture doc written"},
+  {"step": "step_9", "status": "completed", "timestamp": "2026-05-15T21:04:35Z", "summary": "Supporting docs written"},
+  {"step": "step_10", "status": "completed", "timestamp": "2026-05-15T21:04:43Z", "summary": "Master index generated"},
+  {"step": "step_4_batch_loader", "status": "completed", "timestamp": "2026-05-15T21:06:23Z", "summary": "Scanned mmv1/loader/loader.go"},
+  {"step": "step_4_batch_provider_terraform", "status": "completed", "timestamp": "2026-05-15T21:07:05Z", "summary": "Scanned mmv1/provider/terraform.go"},
+  {"step": "step_11", "status": "completed", "timestamp": "2026-05-15T21:10:00Z", "summary": "Performed structural scan of mmv1 and tpgtools, read key entry points and configuration files."},
+  {"step": "step_12", "status": "completed", "timestamp": "2026-05-15T21:10:12Z", "summary": "Workflow complete"}
+],
+"current_step": "completed",
+"findings": {
+  "project_classification": "monolith, cli",
+  "existing_docs": ["README.md", "docs/README.md", ".github/CONTRIBUTING.md", ".github/SECURITY.md", "AGENTS.md"],
+  "technology_stack": {
+    "language": "Go",
+    "version": "1.26",
+    "key_libraries": ["yaml.v3", "yaml.v2", "kin-openapi", "declarative-resource-client-library"],
+    "architecture_pattern": "Code Generation Pipeline"
+  },
+  "entry_points": ["mmv1/main.go", "tpgtools/main.go"],
+  "ci_cd": "GitHub Workflows",
+  "development_info": {
+    "build_system": "Make, Bazel",
+    "commands": {
+      "build": "make build",
+      "test": "make test"
+    },
+    "contribution_docs": "docs/content/contribution-process.md"
+  },
+  "loader_analysis": "Loads products and resources from YAML files, supports overrides and parallel loading.",
+  "provider_analysis": "Implements the core generation logic for Terraform provider, handling resources, tests, documentation, and common files.",
+  "mmv1_scan": "Scanned 126 files structurally. Identified main.go as entry point, products/ directory containing 181 product subdirectories with YAML configs, and provider/ containing generation logic.",
+  "tpgtools_scan": "Scanned tpgtools directory. Identified main.go as entry point, templates/ for generation, and overrides/ for resource overrides. Used for DCL based generation.",
+  "scanned_files_detail": [
+    "mmv1/main.go",
+    "tpgtools/main.go",
+    "mmv1/products/accessapproval/product.yaml",
+    "mmv1/products/accessapproval/ProjectSettings.yaml"
+  ]
+},
+"project_types": [
+  {"part_id": "root", "project_type_id": "cli", "display_name": "CLI"}
+],
+"outputs_generated": ["project-scan-report.json", "source-tree-analysis.md", "architecture.md", "project-overview.md", "development-guide.md", "index.md"],
+"resume_instructions": "Workflow complete"
+}

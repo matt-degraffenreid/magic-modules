@@ -47,7 +47,13 @@ so that I can support diverse Agent Assist use cases.
 - [x] **Verification & Downstream Sync**
   - [x] Run downstream sync BEFORE partial generation to prevent masking real errors (Retro Learning).
 
+### Review Findings
+
+- [x] [Review][Patch] Potential breakage of existing state due to `exactly_one_of` on models [mmv1/products/dialogflow/Generator.yaml:289]
+- [x] [Review][Patch] Sample contradicts YAML description for Agent Coaching Context version [mmv1/templates/terraform/samples/services/dialogflow/dialogflow_generator_agent_coaching.tf.tmpl:311]
+
 ## Dev Notes
+
 
 ### ATDD Artifacts
 - **Checklist:** `_bmad-output/test-artifacts/atdd-checklist-2-1-expand-generator-with-all-contexts-and-settings.md`
@@ -82,6 +88,8 @@ gemini-2.5-pro
 - Added advanced configuration fields (`tunedModel`, `TOOL_CALL_COMPLETION` trigger event).
 - Added explicit `timeouts` block.
 - Created `dialogflow_generator_agent_coaching` sample.
+- ✅ Resolved review finding [Patch]: Replaced exactly_one_of with conflicts on models to allow 0 model definitions.
+- ✅ Resolved review finding [Patch]: Changed version in sample to "2.5" to match YAML description.
 
 ### File List
 - `mmv1/products/dialogflow/Generator.yaml`
@@ -89,3 +97,4 @@ gemini-2.5-pro
 
 ### Change Log
 - 2026-07-08: Initial implementation of story 2.1.
+- 2026-07-08: Addressed code review findings - 2 items resolved.

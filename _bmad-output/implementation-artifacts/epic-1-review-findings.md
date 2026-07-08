@@ -1,16 +1,14 @@
 ### Review Findings
 
-- [x] [Review][Decision][Low] Questionable Required Empty Object (`fallbackPrompt`) — `fallbackPrompt` is required `NestedObject` with `properties: []`. If it is always meant to be empty, its purpose as a required field is confusing and should be documented or simplified. Recommended: dismiss: It is likely an artifact of API design where empty object has semantic meaning.
-- [x] [Review][Patch][High] Invalid `exactly_one_of` Path Syntax [mmv1/products/dialogflow/Tool.yaml:111-114]
-- [x] [Review][Patch][High] FR4 Violation: Missing Authentication in Connector Specification [mmv1/products/dialogflow/Tool.yaml:265]
-- [x] [Review][Patch][Med] Security: Potential Traffic Redirection via Location Manipulation [mmv1/products/dialogflow/Tool.yaml:71]
-- [x] [Review][Patch][Med] Missing Valid Values for Enums [mmv1/products/dialogflow/Tool.yaml]
-- [x] [Review][Patch][Med] Missing Required Fields in Conditional Blocks [mmv1/products/dialogflow/Tool.yaml]
-- [x] [Review][Patch][Med] NFR2 Violation: Missing Explicit Project Parameter [mmv1/products/dialogflow/Tool.yaml]
-- [x] [Review][Patch][Med] NFR7 Violation: Missing Operational Timeouts [mmv1/products/dialogflow/Tool.yaml]
-- [x] [Review][Patch][Med] Missing JSON Normalization/Validation [mmv1/products/dialogflow/Tool.yaml:257-264]
-- [x] [Review][Patch][Low] Hardcoded Location in Samples [mmv1/templates/terraform/samples/services/dialogflow/*.tf.tmpl]
-- [x] [Review][Patch][Low] Conflicting Scope in Description for `displayName` [mmv1/products/dialogflow/Tool.yaml:86]
-- [x] [Review][Patch][Low] Missing `import_format` [mmv1/products/dialogflow/Tool.yaml]
-- [x] [Review][Defer][Low] Misplaced Custom Code Templates [mmv1/products/dialogflow/Tool.yaml:34-36] — deferred, pre-existing
-- [x] [Review][Defer][Low] Redundant Path in `exactly_one_of` [mmv1/products/dialogflow/Tool.yaml] — deferred, style issue
+- [x] [Review][Decision][High] Product Domain Confusion (ES vs CX) — The resource `Tool` is being added to `dialogflow`, but description references "Playbook" (Dialogflow CX concept) and `Tool.yaml` already exists in `dialogflowcx`. Recommended: fix: Clarify target product and clean up CX references if it is ES.
+- [x] [Review][Decision][Med] Missing `endUserAuthConfig` in `connectorSpec` — Divergence from reference/parity. Recommended: fix: Verify if `endUserAuthConfig` is applicable for this variant and add if needed.
+- [x] [Review][Patch][High] Name Handling Contradiction (import vs self_link) [mmv1/products/dialogflow/Tool.yaml:29]
+- [x] [Review][Patch][Med] Security: Missing validation on `location` [mmv1/products/dialogflow/Tool.yaml:98]
+- [ ] [Review][Patch][Med] Missing Enum Validation [mmv1/products/dialogflow/Tool.yaml:157]
+- [ ] [Review][Patch][Med] Empty FallbackPrompt properties [mmv1/products/dialogflow/Tool.yaml:273]
+- [ ] [Review][Patch][Med] Inconsistent Naming in Constraints [mmv1/products/dialogflow/Tool.yaml:122]
+- [x] [Review][Patch][Med] Invalid Required Fields in Samples (Empty Arrays) [mmv1/templates/terraform/samples/services/dialogflow/dialogflow_tool_connector.tf.tmpl:553]
+- [ ] [Review][Patch][Med] Missing constraints on Union Specs and Auth [mmv1/products/dialogflow/Tool.yaml:120]
+- [x] [Review][Patch][Med] Hardcoded Location in Sample [mmv1/templates/terraform/samples/services/dialogflow/dialogflow_tool_connector.tf.tmpl:552]
+- [x] [Review][Patch][Low] Copyright Header Typo [mmv1/products/dialogflow/Tool.yaml:15]
+- [x] [Review][Defer][Med] Security: Vulnerable blind string replacement in Dialogflow endpoint template [mmv1/templates/terraform/pre_create/dialogflow_set_endpoint.go.tmpl:10] — deferred, pre-existing shared template

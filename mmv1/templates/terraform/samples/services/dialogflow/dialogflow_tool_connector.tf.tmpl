@@ -3,7 +3,9 @@ resource "google_dialogflow_tool" "{{$.PrimaryResourceId}}" {
   display_name = "connector-tool"
   description = "A tool with Connector spec"
   connector_spec {
-    name = "projects/{{$.Project}}/locations/us-central1/connections/test-connection"
-    actions = []
+    name = "projects/{{$.Project}}/locations/{{index $.ResourceIdVars "location"}}/connections/test-connection"
+    actions {
+      connection_action_id = "test-action"
+    }
   }
 }

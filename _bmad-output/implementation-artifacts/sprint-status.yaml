@@ -1,5 +1,5 @@
 # generated: 2026-07-08T17:18:06Z
-# last_updated: 2026-07-08T17:18:06Z
+# last_updated: 2026-07-08T17:54:20Z
 # project: magic-modules
 # project_key: NOKEY
 # tracking_system: file-system
@@ -41,7 +41,7 @@
 # - Retrospective appends its action items to action_items; sprint-status surfaces open ones
 
 generated: 2026-07-08T17:18:06Z
-last_updated: 2026-07-08T17:40:48Z
+last_updated: 2026-07-08T17:54:20Z
 project: magic-modules
 project_key: NOKEY
 tracking_system: file-system
@@ -50,7 +50,7 @@ story_location: _bmad-output/implementation-artifacts
 development_status:
   epic-1: in-progress
   1-1-implement-basic-tool-resource-with-openapi-spec: review
-  1-2-support-all-tool-specifications-and-authentication: backlog
+  1-2-support-all-tool-specifications-and-authentication: ready-for-dev
   epic-1-retrospective: optional
   epic-2: backlog
   2-1-expand-generator-with-all-contexts-and-settings: backlog

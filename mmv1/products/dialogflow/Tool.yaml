@@ -49,6 +49,18 @@ samples:
     primary_resource_id: auth_tool
     steps:
       - name: dialogflow_tool_auth
+  - name: dialogflow_tool_oauth
+    primary_resource_id: oauth_tool
+    steps:
+      - name: dialogflow_tool_oauth
+  - name: dialogflow_tool_service_agent
+    primary_resource_id: service_agent_tool
+    steps:
+      - name: dialogflow_tool_service_agent
+  - name: dialogflow_tool_bearer
+    primary_resource_id: bearer_tool
+    steps:
+      - name: dialogflow_tool_bearer
 parameters:
   - name: location
     type: String

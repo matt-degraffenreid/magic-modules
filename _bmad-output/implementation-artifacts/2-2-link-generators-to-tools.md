@@ -1,6 +1,9 @@
+---
+baseline_commit: NO_VCS
+---
 # Story 2.2: Link Generators to Tools
 
-Status: ready-for-dev
+Status: review
 
 ## Story
 
@@ -18,15 +21,15 @@ so that the Generators can execute external actions.
 
 ## Tasks / Subtasks
 
-- [ ] Add `tools` property to `mmv1/products/dialogflow/Generator.yaml` (AC: 2, 3, 4)
-  - [ ] Locate `properties` block in `Generator.yaml`
-  - [ ] Add `tools` as an Array of Strings or similar type depending on API spec
-- [ ] Create/Update sample linkage (AC: 5)
-  - [ ] Create or update a sample in `samples` block demonstrating linking a Generator to a Tool
-- [ ] Verify generation (AC: 2)
-  - [ ] Run `make provider` to generate downstream provider code
-- [ ] Verify functionality (AC: 4)
-  - [ ] Ensure the linkage is correctly emitted in the generated Go code
+- [x] Add `tools` property to `mmv1/products/dialogflow/Generator.yaml` (AC: 2, 3, 4)
+  - [x] Locate `properties` block in `Generator.yaml`
+  - [x] Add `tools` as an Array of Strings or similar type depending on API spec
+- [x] Create/Update sample linkage (AC: 5)
+  - [x] Create or update a sample in `samples` block demonstrating linking a Generator to a Tool
+- [x] Verify generation (AC: 2)
+  - [x] Run `make provider` to generate downstream provider code
+- [x] Verify functionality (AC: 4)
+  - [x] Ensure the linkage is correctly emitted in the generated Go code
 
 ## Dev Notes
 
@@ -64,4 +67,13 @@ Gemini 2.5 Pro
 
 ### Completion Notes List
 
+- Added `tools` property to `Generator.yaml`.
+- Created `dialogflow_generator_with_tools` sample linking `Generator` to `Tool` resource using `google_dialogflow_tool.test_tool.name`.
+- Verified generation to temporary path; output code confirms field inclusion and linkage emission.
+
 ### File List
+
+- `mmv1/products/dialogflow/Generator.yaml`
+- `mmv1/templates/terraform/samples/services/dialogflow/dialogflow_generator_with_tools.tf.tmpl`
+- `mmv1/templates/terraform/samples/services/dialogflow/dialogflow_tool_connector.tf.tmpl`
+- `mmv1/templates/terraform/samples/services/dialogflow/dialogflow_tool_datastore.tf.tmpl`

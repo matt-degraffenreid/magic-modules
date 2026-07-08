@@ -5,7 +5,7 @@ epic_num: 1
 story_num: null
 branch: epic/1-manage-agent-assist-tools-as-infrastructure
 status: in-progress
-updated_at: "2026-07-08T17:23:55Z"
+updated_at: "2026-07-08T17:28:02Z"
 started_at: "2026-07-08T17:23:55Z"
 completed_at: null
 active_seconds: 0
@@ -20,7 +20,7 @@ tea_selected: []
 tea_rationale: null
 epic_story_count: 2
 stories_after_in_epic: null
-completed_phases: []
+completed_phases: [2]
 code_review_iterations: 0
 code_review_loop_done: false
 hitl_halt: null

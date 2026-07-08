@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Story 1.2: Support All Tool Specifications and Authentication API Tests (ATDD)', () => {
-  test.skip('[P0] should create Dialogflow Tool with Function Spec', async ({ request }) => {
+  test('[P0] should create Dialogflow Tool with Function Spec', async ({ request }) => {
     const response = await request.post('/v2beta1/projects/test-project/locations/us-central1/tools', {
       data: {
         displayName: 'function-tool',
@@ -15,7 +15,7 @@ test.describe('Story 1.2: Support All Tool Specifications and Authentication API
     expect(response.status()).toBe(200);
   });
 
-  test.skip('[P0] should create Dialogflow Tool with Connector Spec', async ({ request }) => {
+  test('[P0] should create Dialogflow Tool with Connector Spec', async ({ request }) => {
     const response = await request.post('/v2beta1/projects/test-project/locations/us-central1/tools', {
       data: {
         displayName: 'connector-tool',
@@ -29,7 +29,7 @@ test.describe('Story 1.2: Support All Tool Specifications and Authentication API
     expect(response.status()).toBe(200);
   });
 
-  test.skip('[P0] should create Dialogflow Tool with Data Store Spec', async ({ request }) => {
+  test('[P0] should create Dialogflow Tool with Data Store Spec', async ({ request }) => {
     const response = await request.post('/v2beta1/projects/test-project/locations/us-central1/tools', {
       data: {
         displayName: 'datastore-tool',
@@ -43,7 +43,7 @@ test.describe('Story 1.2: Support All Tool Specifications and Authentication API
     expect(response.status()).toBe(200);
   });
 
-  test.skip('[P1] should create Dialogflow Tool with OpenAPI Spec and Authentication', async ({ request }) => {
+  test('[P1] should create Dialogflow Tool with OpenAPI Spec and Authentication', async ({ request }) => {
     const response = await request.post('/v2beta1/projects/test-project/locations/us-central1/tools', {
       data: {
         displayName: 'auth-tool',
@@ -63,12 +63,25 @@ test.describe('Story 1.2: Support All Tool Specifications and Authentication API
     expect(response.status()).toBe(200);
   });
 
-  test.skip('[P0] should fail to create Dialogflow Tool with multiple specs', async ({ request }) => {
+  test('[P0] should fail to create Dialogflow Tool with multiple specs', async ({ request }) => {
     const response = await request.post('/v2beta1/projects/test-project/locations/us-central1/tools', {
       data: {
         displayName: 'invalid-tool',
         openApiSpec: { textSchema: '...' },
         functionSpec: { inputSchema: '...' }
+      }
+    });
+    expect(response.status()).toBe(400);
+  });
+
+  test('[P1] should fail to create Dialogflow Tool with missing required spec fields', async ({ request }) => {
+    const response = await request.post('/v2beta1/projects/test-project/locations/us-central1/tools', {
+      data: {
+        displayName: 'invalid-connector-tool',
+        connectorSpec: {
+          // Missing required 'name'
+          actions: []
+        }
       }
     });
     expect(response.status()).toBe(400);

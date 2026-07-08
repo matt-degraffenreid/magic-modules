@@ -6,9 +6,10 @@ inputDocuments:
   - '_bmad-output/implementation-artifacts/1-1-implement-basic-tool-resource-with-openapi-spec.md'
   - '_bmad-output/planning-artifacts/prds/prd-magic-modules-2026-07-08/prd.md'
   - '_bmad-output/test-artifacts/test-design-qa.md'
+  - '_bmad-output/implementation-artifacts/1-2-support-all-tool-specifications-and-authentication.md'
 ---
 
-# Automation Summary - Story 1.1
+# Automation Summary
 
 ## Step 1: Preflight & Context Loading
 
@@ -19,7 +20,7 @@ inputDocuments:
 
 ## Step 2: Identify Automation Targets
 
-### Coverage Plan
+### Story 1.1 Coverage Plan
 
 #### Targets by Test Level
 
@@ -36,15 +37,60 @@ inputDocuments:
 - **P0**: `TOOL-02 (Partial)` - Essential CRUD functionality for the implemented resource.
 - **P0**: `tests/api/dialogflow_tool_openapi.spec.ts` - Enabling/updating the existing ATDD test.
 
+### Story 1.2 Coverage Plan
+
+#### Targets by Test Level
+
+- **API Tests (Playwright)**:
+  - `tests/api/dialogflow_tool_specs.spec.ts`: Enable and verify all specs and auth configurations against the API.
+  - Priority: P0 (Mutually Exclusive Specs, Credential Security), P1 (Feature coverage).
+
+- **Integration (Acceptance) Tests (MMv1 Samples)**:
+  - Add new samples to `mmv1/products/dialogflow/Tool.yaml` and create corresponding `.tf.tmpl` files:
+    - `dialogflow_tool_function`: Tool with Function Spec.
+    - `dialogflow_tool_connector`: Tool with Connector Spec.
+    - `dialogflow_tool_datastore`: Tool with Data Store Spec.
+    - `dialogflow_tool_auth`: Tool with OpenAPI Spec and advanced Auth (e.g. API Key).
+  - Priority: P1 (Ensure generated code supports all variants).
+
+#### Priority Assignments
+
+- **P0**: Credential Security (AC 5) - Verified via `sensitive: true` in YAML and generated code.
+- **P0**: Mutually Exclusive Specs (AC 3) - Verified via schema/API tests.
+- **P1**: Specification Blocks (AC 2) - Verified via new samples and API tests.
+- **P1**: Authentication configurations (AC 4) - Verified via new samples and API tests.
+
+#### Justification for Coverage Scope
+
+- **Comprehensive**: Given this story adds multiple complex sub-specs and security configurations, we need comprehensive coverage for all spec types and auth mechanisms to ensure the provider supports all CCAI admin use cases. Selective testing is not sufficient here as each spec type has different structures and validation logic.
+
 ## Step 3: Test Generation Results
+
+### Story 1.1 Results
 
 - **Files Created/Updated**:
   - `mmv1/templates/terraform/samples/services/dialogflow/dialogflow_tool_basic.tf.tmpl`: New acceptance test sample.
   - `mmv1/products/dialogflow/Tool.yaml`: Updated to include the sample in `samples` block.
   - `tests/api/dialogflow_tool_openapi.spec.ts`: Enabled (removed `.skip`) and updated to match `Tool.yaml` schema and URL paths.
 
+### Story 1.2 Results
+
+- **Files Created/Updated**:
+  - `tests/api/dialogflow_tool_specs.spec.ts`: Enabled and expanded with negative tests.
+  - `mmv1/products/dialogflow/Tool.yaml`: Updated with 4 new samples.
+  - `mmv1/templates/terraform/samples/services/dialogflow/dialogflow_tool_function.tf.tmpl`: New sample.
+  - `mmv1/templates/terraform/samples/services/dialogflow/dialogflow_tool_connector.tf.tmpl`: New sample.
+  - `mmv1/templates/terraform/samples/services/dialogflow/dialogflow_tool_datastore.tf.tmpl`: New sample.
+  - `mmv1/templates/terraform/samples/services/dialogflow/dialogflow_tool_auth.tf.tmpl`: New sample.
+
+- **Summary**:
+  - **API Tests**: 6 test cases covering Function, Connector, Data Store specs, and Auth, including exclusivity and negative paths.
+  - **Integration Tests (Samples)**: 5 samples covering all spec variants and advanced Auth.
+
 ## Step 4: Validation & Summary
 
-- **Coverage Status**: Expanded to cover P0 CRUD operations for the basic Dialogflow Tool resource with OpenAPI spec.
-- **Discrepant Discovery**: The generic Playwright skeleton assumed `displayName` and `/agent/` in URL, but `Tool.yaml` implementation uses `/locations/` and does not expose `displayName`. Tests have been aligned with the implementation in `Tool.yaml`.
-- **Next Steps**: Run acceptance tests in downstream provider environment to verify actual API interaction (requires credentials).
+### Story 1.2 Validation
+
+- **Coverage Status**: Expanded to cover new specifications (Function, Connector, Data Store) and advanced Authentication configurations.
+- **Key Assumptions**: The generated code will correctly implement the `sensitive` flag and mutex requirements which are verified at compile/schema level.
+- **Next Recommended Workflow**: Run integration tests in downstream provider to verify actual API interaction.

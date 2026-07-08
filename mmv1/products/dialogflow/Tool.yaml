@@ -33,6 +33,22 @@ samples:
     primary_resource_id: basic_tool
     steps:
       - name: dialogflow_tool_basic
+  - name: dialogflow_tool_function
+    primary_resource_id: function_tool
+    steps:
+      - name: dialogflow_tool_function
+  - name: dialogflow_tool_connector
+    primary_resource_id: connector_tool
+    steps:
+      - name: dialogflow_tool_connector
+  - name: dialogflow_tool_datastore
+    primary_resource_id: datastore_tool
+    steps:
+      - name: dialogflow_tool_datastore
+  - name: dialogflow_tool_auth
+    primary_resource_id: auth_tool
+    steps:
+      - name: dialogflow_tool_auth
 parameters:
   - name: location
     type: String

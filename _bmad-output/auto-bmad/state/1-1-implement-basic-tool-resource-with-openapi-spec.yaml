@@ -1,26 +1,26 @@
 # auto-bmad per-story state — written by scripts/state_update.py (full stable schema;
 # see references/state-and-resume.md). Prose belongs in reports/{key}.md, not here.
-story_key: epic-1
+story_key: 1-1-implement-basic-tool-resource-with-openapi-spec
 epic_num: 1
-story_num: null
-branch: epic/1-manage-agent-assist-tools-as-infrastructure
+story_num: 1
+branch: null
 status: in-progress
-updated_at: "2026-07-08T17:30:49Z"
-started_at: "2026-07-08T17:23:55Z"
+updated_at: "2026-07-08T17:30:53Z"
+started_at: "2026-07-08T17:30:51Z"
 completed_at: null
-active_seconds: 81
+active_seconds: 0
 timing_anchor: null
-is_first_in_epic: false
+is_first_in_epic: true
 is_last_in_epic: false
 needs_project_context_bootstrap: false
-git_mode: null
-base_branch: null
-tea_risk: null
-tea_selected: []
+git_mode: remote
+base_branch: main
+tea_risk: high
+tea_selected: [atdd, automate]
 tea_rationale: null
-epic_story_count: 2
+epic_story_count: null
 stories_after_in_epic: null
-completed_phases: [2]
+completed_phases: []
 code_review_iterations: 0
 code_review_loop_done: false
 hitl_halt: null
@@ -51,8 +51,3 @@ deferred_work: []
 blockers: []
 overrides: {}
 constraints: []
-epic_slug: manage-agent-assist-tools-as-infrastructure
-active_story: 1-1-implement-basic-tool-resource-with-openapi-spec
-stories_landed: []
-auto_decisions: []
-uat_items: []

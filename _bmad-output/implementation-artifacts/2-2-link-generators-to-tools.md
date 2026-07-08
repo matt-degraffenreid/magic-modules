@@ -30,6 +30,10 @@ so that the Generators can execute external actions.
 
 ## Dev Notes
 
+### ATDD Artifacts
+
+- **Checklist:** _bmad-output/test-artifacts/atdd-checklist-2-2-link-generators-to-tools.md
+
 - **Persistent Facts & Constraints:**
   - **Testing Strategy:** Standard testing in MMv1 is driven by YAML samples and downstream Go provider tests. Do NOT generate Playwright/TS or Python tests in `tests/` directory as this pollutes the repo and deviates from standard practices.
   - **Security Awareness:** The `Generator.yaml` resource uses `dialogflow_set_endpoint.go.tmpl` which has a known deferred security issue: "Vulnerable blind string replacement in Dialogflow endpoint template" (`mmv1/templates/terraform/pre_create/dialogflow_set_endpoint.go.tmpl:10`). Be aware of this pre-existing condition.

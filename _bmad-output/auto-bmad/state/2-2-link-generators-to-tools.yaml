@@ -5,10 +5,10 @@ epic_num: 2
 story_num: 2
 branch: epic/2-enhance-llm-generators-with-full-context-support
 status: in-progress
-updated_at: "2026-07-08T20:24:51Z"
+updated_at: "2026-07-08T20:26:40Z"
 started_at: "2026-07-08T20:23:26Z"
 completed_at: null
-active_seconds: 81
+active_seconds: 183
 timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: true
@@ -20,7 +20,7 @@ tea_selected: [atdd, automate]
 tea_rationale: "Adds a linkage property to Generator.yaml, modifying the Provider's API surface."
 epic_story_count: 2
 stories_after_in_epic: 0
-completed_phases: [3]
+completed_phases: [3, 4]
 code_review_iterations: 0
 code_review_loop_done: false
 hitl_halt: null

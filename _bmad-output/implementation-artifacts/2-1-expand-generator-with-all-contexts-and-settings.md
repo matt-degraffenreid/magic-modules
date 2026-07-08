@@ -1,6 +1,9 @@
+---
+baseline_commit: NO_VCS
+---
 # Story 2.1: Expand Generator with All Contexts and Settings
 
-Status: ready-for-dev
+Status: review
 
 ## Story
 
@@ -18,31 +21,31 @@ so that I can support diverse Agent Assist use cases.
 
 ## Tasks / Subtasks
 
-- [ ] **Modify `Generator.yaml` to include all contexts (FR1)** (AC: 1, 2, 3)
-  - [ ] Make `summarizationContext` optional in YAML schema to resolve `Required vs Optional` conflict (AD-1, Deferred Spine Item).
-  - [ ] Add `free_form_context` as NestedObject.
-  - [ ] Add `agent_coaching_context` as NestedObject.
-  - [ ] Add `translation_context` as NestedObject.
-  - [ ] Add `agent_feedback_context` as NestedObject.
-  - [ ] Add `customer_message_generation_context` as NestedObject.
-  - [ ] Ensure DIALOGFLOW_INTERNAL fields are excluded.
+- [x] **Modify `Generator.yaml` to include all contexts (FR1)** (AC: 1, 2, 3)
+  - [x] Make `summarizationContext` optional in YAML schema to resolve `Required vs Optional` conflict (AD-1, Deferred Spine Item).
+  - [x] Add `free_form_context` as NestedObject.
+  - [x] Add `agent_coaching_context` as NestedObject.
+  - [x] Add `translation_context` as NestedObject.
+  - [x] Add `agent_feedback_context` as NestedObject.
+  - [x] Add `customer_message_generation_context` as NestedObject.
+  - [x] Ensure DIALOGFLOW_INTERNAL fields are excluded.
 
-- [ ] **Enforce Mutual Exclusivity** (AC: 2)
-  - [ ] Implement `exactly_one_of` or equivalent MMv1 strategy for all context blocks (AD-2).
+- [x] **Enforce Mutual Exclusivity** (AC: 2)
+  - [x] Implement `exactly_one_of` or equivalent MMv1 strategy for all context blocks (AD-2).
 
-- [ ] **Advanced Configuration Fields (FR2)** (AC: 4)
-  - [ ] Verify existing `inferenceParameter` and `triggerEvent` cover all required sub-fields/enums.
-  - [ ] Add `foundation_model` support, ensuring both `published_model` (existing) and `tuned_model` (new) are supported as mutually exclusive/oneof options if applicable, or align with proto definition.
+- [x] **Advanced Configuration Fields (FR2)** (AC: 4)
+  - [x] Verify existing `inferenceParameter` and `triggerEvent` cover all required sub-fields/enums.
+  - [x] Add `foundation_model` support, ensuring both `published_model` (existing) and `tuned_model` (new) are supported as mutually exclusive/oneof options if applicable, or align with proto definition.
 
-- [ ] **Custom Code & Timeouts (AD-4, NFR7)** (AC: 5)
-  - [ ] Retain `dialogflow_set_endpoint.go.tmpl` custom code.
-  - [ ] Define explicit `timeouts` blocks.
+- [x] **Custom Code & Timeouts (AD-4, NFR7)** (AC: 5)
+  - [x] Retain `dialogflow_set_endpoint.go.tmpl` custom code.
+  - [x] Define explicit `timeouts` blocks.
 
-- [ ] **Test Fixtures & Samples (NFR5)**
-  - [ ] Create dedicated samples/fixtures for at least one new context (e.g., Agent Coaching) to ensure regression testing covers new features.
+- [x] **Test Fixtures & Samples (NFR5)**
+  - [x] Create dedicated samples/fixtures for at least one new context (e.g., Agent Coaching) to ensure regression testing covers new features.
 
-- [ ] **Verification & Downstream Sync**
-  - [ ] Run downstream sync BEFORE partial generation to prevent masking real errors (Retro Learning).
+- [x] **Verification & Downstream Sync**
+  - [x] Run downstream sync BEFORE partial generation to prevent masking real errors (Retro Learning).
 
 ## Dev Notes
 
@@ -74,6 +77,15 @@ gemini-2.5-pro
 ### Debug Log References
 
 ### Completion Notes List
+- Expanded `Generator.yaml` with all public contexts as mutually exclusive options.
+- Made `summarizationContext` optional.
+- Added advanced configuration fields (`tunedModel`, `TOOL_CALL_COMPLETION` trigger event).
+- Added explicit `timeouts` block.
+- Created `dialogflow_generator_agent_coaching` sample.
 
 ### File List
 - `mmv1/products/dialogflow/Generator.yaml`
+- `mmv1/templates/terraform/samples/services/dialogflow/dialogflow_generator_agent_coaching.tf.tmpl`
+
+### Change Log
+- 2026-07-08: Initial implementation of story 2.1.

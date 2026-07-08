@@ -73,6 +73,11 @@ properties:
       Optional. Human readable description of the tool.
   - name: openApiSpec
     type: NestedObject
+    exactly_one_of:
+      - 'open_api_spec'
+      - 'data_store_spec'
+      - 'function_spec'
+      - 'connector_spec'
     description: |
       Specification for OpenAPI tool.
       This field is part of a union field `specification`: Only one of `openApiSpec`, `dataStoreSpec`, `functionSpec`, or `connectorSpec` may be set.
@@ -84,6 +89,11 @@ properties:
         properties:
           - name: apiKeyConfig
             type: NestedObject
+            exactly_one_of:
+              - 'open_api_spec.0.authentication.0.api_key_config'
+              - 'open_api_spec.0.authentication.0.oauth_config'
+              - 'open_api_spec.0.authentication.0.service_agent_auth_config'
+              - 'open_api_spec.0.authentication.0.bearer_token_config'
             description: |
               Config for API key auth.
               This field is part of a union field `auth_config`: Only one of `apiKeyConfig`, `oauthConfig`, `serviceAgentAuthConfig`, or `bearerTokenConfig` may be set.
@@ -105,6 +115,11 @@ properties:
                 required: true
           - name: oauthConfig
             type: NestedObject
+            exactly_one_of:
+              - 'open_api_spec.0.authentication.0.api_key_config'
+              - 'open_api_spec.0.authentication.0.oauth_config'
+              - 'open_api_spec.0.authentication.0.service_agent_auth_config'
+              - 'open_api_spec.0.authentication.0.bearer_token_config'
             description: |
               Config for OAuth.
               This field is part of a union field `auth_config`: Only one of `apiKeyConfig`, `oauthConfig`, `serviceAgentAuthConfig`, or `bearerTokenConfig` may be set.
@@ -137,6 +152,11 @@ properties:
                   type: String
           - name: serviceAgentAuthConfig
             type: NestedObject
+            exactly_one_of:
+              - 'open_api_spec.0.authentication.0.api_key_config'
+              - 'open_api_spec.0.authentication.0.oauth_config'
+              - 'open_api_spec.0.authentication.0.service_agent_auth_config'
+              - 'open_api_spec.0.authentication.0.bearer_token_config'
             description: |
               Config for service agent auth.
               This field is part of a union field `auth_config`: Only one of `apiKeyConfig`, `oauthConfig`, `serviceAgentAuthConfig`, or `bearerTokenConfig` may be set.
@@ -147,6 +167,11 @@ properties:
                   Optional. Indicate the auth token type generated from the Diglogflow service agent.
           - name: bearerTokenConfig
             type: NestedObject
+            exactly_one_of:
+              - 'open_api_spec.0.authentication.0.api_key_config'
+              - 'open_api_spec.0.authentication.0.oauth_config'
+              - 'open_api_spec.0.authentication.0.service_agent_auth_config'
+              - 'open_api_spec.0.authentication.0.bearer_token_config'
             description: |
               Config for bearer token auth.
               This field is part of a union field `auth_config`: Only one of `apiKeyConfig`, `oauthConfig`, `serviceAgentAuthConfig`, or `bearerTokenConfig` may be set.
@@ -163,6 +188,11 @@ properties:
         required: true
   - name: dataStoreSpec
     type: NestedObject
+    exactly_one_of:
+      - 'open_api_spec'
+      - 'data_store_spec'
+      - 'function_spec'
+      - 'connector_spec'
     description: |
       Data store search tool specification.
       This field is part of a union field `specification`: Only one of `openApiSpec`, `dataStoreSpec`, `functionSpec`, or `connectorSpec` may be set.
@@ -187,8 +217,21 @@ properties:
               type: String
               description: |
                 The document processing mode for the data store connection.
+      - name: fallbackPrompt
+        type: NestedObject
+        description: |
+          Fallback prompt configurations to use.
+        required: true
+        allow_empty_object: true
+        send_empty_value: true
+        properties: [] # Meant to be an empty object with no properties.
   - name: functionSpec
     type: NestedObject
+    exactly_one_of:
+      - 'open_api_spec'
+      - 'data_store_spec'
+      - 'function_spec'
+      - 'connector_spec'
     description: |
       Client side executed function specification.
       This field is part of a union field `specification`: Only one of `openApiSpec`, `dataStoreSpec`, `functionSpec`, or `connectorSpec` may be set.
@@ -203,6 +246,11 @@ properties:
           Optional. The JSON schema describing the output of the function.
   - name: connectorSpec
     type: NestedObject
+    exactly_one_of:
+      - 'open_api_spec'
+      - 'data_store_spec'
+      - 'function_spec'
+      - 'connector_spec'
     description: |
       Integration connectors tool specification.
       This field is part of a union field `specification`: Only one of `openApiSpec`, `dataStoreSpec`, `functionSpec`, or `connectorSpec` may be set.

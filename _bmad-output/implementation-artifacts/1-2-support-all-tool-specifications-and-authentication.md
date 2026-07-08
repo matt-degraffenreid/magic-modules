@@ -78,3 +78,12 @@ Gemini 2.5 Pro
 
 - `mmv1/products/dialogflow/Tool.yaml`
 
+### Review Findings
+
+- [x] [Review][Decision][Med] Sample references undefined field fallback_prompt — Sample specifies fallback_prompt but field is missing from schema. Recommended: fix: Add fallbackPrompt to Tool.yaml under dataStoreSpec to match dialogflowcx if supported in v2beta1.
+- [x] [Review][Patch][Med] Specification Mutual Exclusivity not enforced in schema [mmv1/products/dialogflow/Tool.yaml:74]
+- [x] [Review][Patch][Med] Authentication Mutual Exclusivity not enforced in schema [mmv1/products/dialogflow/Tool.yaml:80]
+
+
+
+

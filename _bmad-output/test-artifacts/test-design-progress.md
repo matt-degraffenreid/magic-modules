@@ -4,127 +4,106 @@ totalSteps: 5
 stepsCompleted: ['step-01-detect-mode', 'step-02-load-context', 'step-03-risk-and-testability', 'step-04-coverage-plan', 'step-05-generate-output']
 lastStep: 'step-05-generate-output'
 nextStep: ''
-lastSaved: '2026-07-08'
-inputDocuments:
-  - '_bmad-output/planning-artifacts/epics.md'
-  - '_bmad-output/planning-artifacts/prds/prd-magic-modules-2026-07-08/prd.md'
-  - '_bmad-output/planning-artifacts/architecture/architecture-magic-modules-2026-07-08/ARCHITECTURE-SPINE.md'
-  - '_bmad-output/test-artifacts/test-design-architecture.md'
-  - '_bmad-output/test-artifacts/test-design-qa.md'
+lastSaved: '2026-07-08T19:54:15Z'
 ---
+
 # Step 1: Detect Mode & Prerequisites
 
 ## Mode Confirmation
-- **Selected Mode**: Epic-Level Mode
-- **Reason**: User explicitly requested Epic-Level mode for Epic 1.
+- **Selected Mode:** Epic-Level Mode
+- **Reason:** Explicit user instruction to focus on Epic 2.
 
 ## Prerequisite Check
-- **Epic/Story Requirements**: Available in `_bmad-output/planning-artifacts/epics.md`.
-- **Architecture Context**: Available in `_bmad-output/planning-artifacts/architecture/architecture-magic-modules-2026-07-08/ARCHITECTURE-SPINE.md`.
+- **Epic Requirements:** Available in `_bmad-output/planning-artifacts/epics.md`.
+- **Stories:**
+  - Story 2.1: Expand Generator with All Contexts and Settings
+  - Story 2.2: Link Generators to Tools
+- **Acceptance Criteria:** Defined in `epics.md`.
+- **Architecture Context:** Available in `_bmad-output/planning-artifacts/architecture/architecture-magic-modules-2026-07-08/ARCHITECTURE-SPINE.md` (referenced in `epics.md`).
 
 # Step 2: Load Context & Knowledge Base
 
-## Configuration Loaded
+## Configuration
 - `tea_use_playwright_utils`: true
 - `tea_use_pactjs_utils`: false
 - `tea_pact_mcp`: none
 - `tea_browser_automation`: auto
-- `test_stack_type`: auto (Inferred: backend)
+- `test_stack_type`: auto (Detected: Go/Backend)
 
-## Project Artifacts Loaded
-- **Epic/Story Requirements**: `_bmad-output/planning-artifacts/epics.md`
-- **PRD**: `_bmad-output/planning-artifacts/prds/prd-magic-modules-2026-07-08/prd.md`
-- **Architecture**: `_bmad-output/planning-artifacts/architecture/architecture-magic-modules-2026-07-08/ARCHITECTURE-SPINE.md`
-- **System-Level Design**: `_bmad-output/test-artifacts/test-design-architecture.md`, `test-design-qa.md`
+## Loaded Artifacts
+- **PRD:** `_bmad-output/planning-artifacts/prds/prd-magic-modules-2026-07-08/prd.md`
+- **Architecture Spine:** `_bmad-output/planning-artifacts/architecture/architecture-magic-modules-2026-07-08/ARCHITECTURE-SPINE.md`
+- **Epics:** `_bmad-output/planning-artifacts/epics.md`
+- **Prior Test Design Architecture:** `_bmad-output/test-artifacts/test-design-architecture.md`
+- **Prior Test Design QA:** `_bmad-output/test-artifacts/test-design-qa.md`
 
-## Knowledge Fragments Loaded
+## Loaded Knowledge Fragments
 - `risk-governance.md`
 - `probability-impact.md`
 - `test-levels-framework.md`
 - `test-priorities-matrix.md`
 
-## Existing Test Analysis
-- Found `resource_dialogflow_generator_test.go` in `mmv1/third_party/terraform/services/dialogflow/`.
-- Tests cover `summarization_context` CRUD.
-- No tests for `Tool` resource or other contexts yet (as expected for new features).
-
 # Step 3: Testability & Risk Assessment
 
-## Risk Assessment
+## Risk Assessment (Epic 2 Focus)
 
-| Category | Risk | Probability (1-3) | Impact (1-3) | Score (P×I) | High | Mitigation |
-| :--- | :--- | :---: | :---: | :---: | :---: | :--- |
-| **SEC** | Credentials (API Key, OAuth secrets) might leak if not masked correctly | 2 | 3 | **6** | ✅ | Ensure `sensitive: true` in YAML for auth fields in `Tool.yaml`. |
-| **TECH**| Complex nested `oneof` structures lead to generation errors | 2 | 2 | 4 | | Use standard MMv1 patterns (NestedObject/array). |
-| **OPS**  | Operational timeouts cause test failures if backend is slow | 2 | 2 | 4 | | Define explicit `timeouts` blocks in `Tool.yaml`. |
-| **BUS**  | Incomplete specification support impedes user adoption | 1 | 2 | 2 | | Verify coverage of all specs in acceptance tests. |
+| Risk ID | Category | Description | Probability | Impact | Score | Mitigation |
+| :--- | :--- | :--- | :---: | :---: | :---: | :--- |
+| **R-BACKWARD-01** | **TECH/BUS** | Breaking existing `summarizationContext` users | 2 | 3 | **6** | Strict regression testing on existing Generator samples. |
+| **R-TECH-01** | **TECH** | Complex nested `oneof` structures lead to generation errors | 2 | 2 | 4 | Use standard MMv1 patterns, verify generated Go code. |
+| **R-OPS-01** | **OPS** | Operational timeouts cause test failures if backend is slow | 2 | 2 | 4 | Define explicit `timeouts` blocks in YAML. |
+| **R-LINK-01** | **TECH** | Linkage failure between Generator and Tool | 2 | 2 | 4 | Verify linkage via integration tests with realistic samples. |
 
 ## NFR Planning Assessment
+- **Maintainability (Backward Parity):** Threshold is 0 breaking changes for `summarizationContext`.
+- **Reliability (Operational Timeouts):** Threshold is TBD (need to define in YAML).
 
-- **Security**: Sensitive field masking.
-  - **Thresholds**: Binary (Yes/No).
-  - **Evidence**: YAML inspection, generated code check.
-- **Performance**: Operation timeouts.
-  - **Thresholds**: **UNKNOWN** (Explicit values missing in PRD/Epics).
-  - **Evidence**: YAML timeout verification.
-
-### NFR Gaps
-- Performance timeouts are unknown -> OPS risk (Score 4).
-
-## Summary of Risk Findings
-- **Highest Risk**: Security leak of credentials (Score 6). Mitigation is critical (`sensitive: true`).
-- **Medium Risks**: Complexity of `oneof` (TECH) and Unknown Timeouts (OPS).
+## Risk Summary
+- **Highest Risk:** R-BACKWARD-01 (Score 6) requires immediate attention to ensure backward compatibility.
+- Other risks are medium (Score 4) and can be managed via standard testing practices.
 
 # Step 4: Coverage Plan & Execution Strategy
 
-## Coverage Matrix
+## Coverage Matrix (Epic 2 Focus)
 
-| ID | Scenario | Test Level | Priority | NFR/Risk Linked |
+| Test ID | Requirement | Test Level | Priority | Notes |
 | :--- | :--- | :--- | :---: | :--- |
-| **TOOL-01** | CRUD Tool with `open_api_spec` (No Auth) | Integration (Acceptance) | P0 | Core Feature (Story 1.1) |
-| **TOOL-02** | CRUD Tool with `open_api_spec` + API Key Auth | Integration (Acceptance) | P0 | SEC Risk (Story 1.2) |
-| **TOOL-03** | CRUD Tool with `open_api_spec` + OAuth | Integration (Acceptance) | P0 | SEC Risk (Story 1.2) |
-| **TOOL-04** | CRUD Tool with `function_spec` | Integration (Acceptance) | P0 | Core Feature (Story 1.2) |
-| **TOOL-05** | CRUD Tool with `connector_spec` | Integration (Acceptance) | P1 | Feature Completeness (Story 1.2) |
-| **TOOL-06** | CRUD Tool with `data_store_spec` | Integration (Acceptance) | P1 | Feature Completeness (Story 1.2) |
-| **NFR-SEC** | Verify sensitive fields are masked in logs/state | Unit/Inspection | P0 | SEC Risk |
-| **NFR-OPS** | Verify resource handles long operations via timeouts | Integration (Acceptance) | P1 | OPS Risk (Timeouts) |
+| **GEN-01** | CRUD Generator with `free_form_context` | Integration (Acceptance) | P0 | Basic CRUD |
+| **GEN-02** | CRUD Generator with `agent_coaching_context` + Tool | Integration (Acceptance) | P0 | Multi-resource link |
+| **GEN-03** | CRUD Generator with `summarization_context` | Integration (Acceptance) | P0 | Regression |
+| **GEN-04** | CRUD Generator with `translation_context` | Integration (Acceptance) | P1 | Beta feature |
+| **GEN-05** | CRUD Generator with `agent_feedback_context` | Integration (Acceptance) | P1 | Advanced context |
+| **GEN-06** | CRUD Generator with `customer_message_generation_context` | Integration (Acceptance) | P1 | Advanced context |
+| **GEN-07** | CRUD Generator with advanced fields (inference, trigger, foundation) | Integration (Acceptance) | P1 | Feature completeness |
 
 ## NFR Coverage and Evidence Plan
-
-- **Security**: Sensitive Field Masking.
-  - **Scenario**: Code inspection of generated code, check Terraform output in tests.
-  - **Validation Level**: Unit/Inspection.
-  - **Evidence**: Code snippet (`sensitive: true`), Terraform log masking.
-- **Performance**: Timeouts.
-  - **Scenario**: Verify operation completes within configured timeouts.
-  - **Validation Level**: Integration (Acceptance).
-  - **Evidence**: Test execution logs.
+- **Maintainability (Backward Parity):** GEN-03 passing is evidence.
+- **Reliability (Operational Timeouts):** Verify YAML block (Inspection).
 
 ## Execution Strategy
-
-- **PR**: All P0/P1 Acceptance tests must pass (Target <15 mins total).
-- **Nightly/Weekly**: None needed for MVP unless stress testing is added.
+- **PR:** All functional tests (GEN-01 to GEN-07) run on every PR if execution time is <15 mins.
 
 ## Resource Estimates
-
-- **P0 Scenarios**: ~20–30 hours
-- **P1 Scenarios**: ~15–25 hours
-- **NFR Verification**: ~5–10 hours
-- **Total**: ~40–65 hours
+- **P0 Scenarios:** ~15–20 hours
+- **P1 Scenarios:** ~10–15 hours
+- **Total:** ~25–35 hours
 
 ## Quality Gates
-
-- **P0 Pass Rate**: 100%
-- **P1 Pass Rate**: ≥ 95%
-- **Coverage Target**: 1 explicit `sample` per variant/feature in YAML.
-- **Security Mitigation**: 100% masking of auth fields verified before PR merge.
+- P0 pass rate = 100%
+- P1 pass rate ≥ 95%
+- High-risk mitigations (R-BACKWARD-01) complete before release.
+- Coverage target ≥ 80% of identified scenarios.
 
 # Step 5: Generate Outputs & Validate
 
-## Completion Report
-- **Mode Used**: Epic-Level Mode (Epic 1)
-- **Output File**: `_bmad-output/test-artifacts/test-design-epic-1.md`
-- **Key Risks**: Security leak of credentials (Score 6).
-- **Gate Thresholds**: 100% P0 pass rate required.
-- **Open Assumptions**: API stability and accessibility.
+## Generated Outputs
+- `_bmad-output/test-artifacts/test-design-epic-2.md`
+
+## Validation
+- Output generated using `test-design-template.md`.
+- All required sections (Risk, Coverage, NFR, etc.) populated.
+- Focused on Epic 2 scope.
+
+
+
+

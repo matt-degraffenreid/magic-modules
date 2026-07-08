@@ -5,11 +5,11 @@ epic_num: 2
 story_num: null
 branch: epic/2-enhance-llm-generators-with-full-context-support
 status: in-progress
-updated_at: "2026-07-08T19:53:12Z"
+updated_at: "2026-07-08T19:54:35Z"
 started_at: "2026-07-08T19:52:10Z"
 completed_at: null
-active_seconds: 0
-timing_anchor: 1783540354
+active_seconds: 120
+timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false
 needs_project_context_bootstrap: false
@@ -20,7 +20,7 @@ tea_selected: []
 tea_rationale: null
 epic_story_count: 2
 stories_after_in_epic: null
-completed_phases: [1]
+completed_phases: [1, 2]
 code_review_iterations: 0
 code_review_loop_done: false
 hitl_halt: null

@@ -118,6 +118,10 @@ var (
 					startDate: newDate(2026, 06, 01),
 					endDate:   newDate(2026, 06, 12),
 				},
+				{
+					startDate: newDate(2026, 06, 29),
+					endDate:   newDate(2026, 07, 06),
+				},
 			},
 		},
 		"roaks3": {
@@ -126,13 +130,17 @@ var (
 					startDate: newDate(2026, 5, 7),
 					endDate:   newDate(2026, 5, 11),
 				},
+				{
+					startDate: newDate(2026, 7, 5),
+					endDate:   newDate(2026, 8, 17),
+				},
 			},
 		},
 		"ScottSuarez": {
 			vacations: []Vacation{
 				{
 					startDate: newDate(2026, 4, 4),
-					endDate:   newDate(2026, 7, 13),
+					endDate:   newDate(2026, 7, 5),
 				},
 			},
 		},

@@ -4,12 +4,12 @@ story_key: epic-1
 epic_num: 1
 story_num: null
 branch: epic/1-manage-agent-assist-tools-as-infrastructure
-status: in-progress
-updated_at: "2026-07-08T18:00:00Z"
+status: done
+updated_at: "2026-07-08T18:51:19Z"
 started_at: "2026-07-08T17:23:55Z"
-completed_at: null
-active_seconds: 1284
-timing_anchor: null
+completed_at: "2026-07-08T18:51:19Z"
+active_seconds: 1511
+timing_anchor: 1783534591
 is_first_in_epic: false
 is_last_in_epic: false
 needs_project_context_bootstrap: false
@@ -21,17 +21,17 @@ tea_rationale: null
 epic_story_count: 2
 stories_after_in_epic: null
 completed_phases: [2]
-code_review_iterations: 0
-code_review_loop_done: false
+code_review_iterations: 2
+code_review_loop_done: true
 hitl_halt: null
 external_review_iterations: 0
-convergence_unverified: false
+convergence_unverified: true
 story_trace: null
 commits: []
 phase8_steps:
-  trace_gate: null
-  nfr: null
-  test_review: null
+  trace_gate: done
+  nfr: done
+  test_review: done
   project_context: null
   reconcile: null
   archive: null
@@ -47,15 +47,22 @@ merge_method: null
 merge_commit: null
 branch_deleted: false
 open_questions: []
-deferred_work: []
+deferred_work:
+  - Define and add appropriate timeouts to Tool.yaml requested by NFR audit.
 blockers: []
 overrides: {}
 constraints: []
 epic_slug: manage-agent-assist-tools-as-infrastructure
-active_story: 1-2-support-all-tool-specifications-and-authentication
+active_story: null
 stories_landed:
   - 1-1-implement-basic-tool-resource-with-openapi-spec
-auto_decisions: []
+  - 1-2-support-all-tool-specifications-and-authentication
+auto_decisions:
+  - "Questionable Required Empty Object (fallbackPrompt) [Low] -> dismiss: It is likely an artifact of API design where empty object has semantic meaning."
+  - "Product Domain Confusion (ES vs CX) [High] -> fix: Clarify target product and clean up CX references if it is ES."
+  - "Missing `endUserAuthConfig` in `connectorSpec` [Med] -> fix: Verify if `endUserAuthConfig` is applicable for this variant and add if needed."
 uat_items:
   - "[1-1-implement-basic-tool-resource-with-openapi-spec] Inspect mmv1/products/dialogflow/Tool.yaml to verify openApiSpec and textSchema are defined as expected."
   - "[1-1-implement-basic-tool-resource-with-openapi-spec] Run make provider to test code generation."
+  - "[1-2-support-all-tool-specifications-and-authentication] Verify specification exclusivity: Define both open_api_spec and data_store_spec in the same resource and run terraform plan to trigger error."
+  - "[1-2-support-all-tool-specifications-and-authentication] Verify sensitive credential masking in plan output."

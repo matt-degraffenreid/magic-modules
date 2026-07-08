@@ -5,7 +5,7 @@ epic_num: 1
 story_num: 2
 branch: null
 status: in-progress
-updated_at: "2026-07-08T18:04:15Z"
+updated_at: "2026-07-08T18:09:02Z"
 started_at: "2026-07-08T17:53:15Z"
 completed_at: null
 active_seconds: 0
@@ -51,3 +51,4 @@ deferred_work: []
 blockers: []
 overrides: {}
 constraints: []
+tier_a_base_sha: 5fce48e38

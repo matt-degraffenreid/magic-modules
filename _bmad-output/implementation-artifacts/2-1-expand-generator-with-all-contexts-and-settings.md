@@ -46,6 +46,9 @@ so that I can support diverse Agent Assist use cases.
 
 ## Dev Notes
 
+### ATDD Artifacts
+- **Checklist:** `_bmad-output/test-artifacts/atdd-checklist-2-1-expand-generator-with-all-contexts-and-settings.md`
+
 ### Retrospective Learnings & Forward-Looking Constraints
 - **Downstream Sync is Critical:** Ensure downstream provider repositories are synced before generating partial resource code to avoid compilation artifacts masking real errors.
 - **Operational Timeouts:** Define `timeouts` blocks in the YAML.

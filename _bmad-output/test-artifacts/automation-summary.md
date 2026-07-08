@@ -17,6 +17,7 @@ inputDocuments:
 - **Framework Verification**: Backend framework (Go testing) exists via `*_test.go` files in `mmv1`.
 - **Execution Mode**: BMad-Integrated (Level 1)
 - **Playwright Utils Profile**: API-only (enabled via config, but primary testing is MMv1 Samples).
+- **Gap Closing Iteration**: Adding OAuth, Service Agent, Bearer samples as per Traceability Matrix.
 
 ## Step 2: Identify Automation Targets
 
@@ -50,7 +51,10 @@ inputDocuments:
     - `dialogflow_tool_function`: Tool with Function Spec.
     - `dialogflow_tool_connector`: Tool with Connector Spec.
     - `dialogflow_tool_datastore`: Tool with Data Store Spec.
-    - `dialogflow_tool_auth`: Tool with OpenAPI Spec and advanced Auth (e.g. API Key).
+    - `dialogflow_tool_auth`: Tool with OpenAPI Spec and API Key Auth.
+    - `dialogflow_tool_oauth`: Tool with OpenAPI Spec and OAuth.
+    - `dialogflow_tool_service_agent`: Tool with OpenAPI Spec and Service Agent Auth.
+    - `dialogflow_tool_bearer`: Tool with OpenAPI Spec and Bearer Token.
   - Priority: P1 (Ensure generated code supports all variants).
 
 #### Priority Assignments
@@ -76,16 +80,19 @@ inputDocuments:
 ### Story 1.2 Results
 
 - **Files Created/Updated**:
-  - `tests/api/dialogflow_tool_specs.spec.ts`: Enabled and expanded with negative tests.
-  - `mmv1/products/dialogflow/Tool.yaml`: Updated with 4 new samples.
+  - `tests/api/dialogflow_tool_specs.spec.ts`: Enabled and expanded with negative tests and advanced Auth (OAuth, Service Agent, Bearer).
+  - `mmv1/products/dialogflow/Tool.yaml`: Updated with 7 new samples.
   - `mmv1/templates/terraform/samples/services/dialogflow/dialogflow_tool_function.tf.tmpl`: New sample.
   - `mmv1/templates/terraform/samples/services/dialogflow/dialogflow_tool_connector.tf.tmpl`: New sample.
   - `mmv1/templates/terraform/samples/services/dialogflow/dialogflow_tool_datastore.tf.tmpl`: New sample.
   - `mmv1/templates/terraform/samples/services/dialogflow/dialogflow_tool_auth.tf.tmpl`: New sample.
+  - `mmv1/templates/terraform/samples/services/dialogflow/dialogflow_tool_oauth.tf.tmpl`: New sample.
+  - `mmv1/templates/terraform/samples/services/dialogflow/dialogflow_tool_service_agent.tf.tmpl`: New sample.
+  - `mmv1/templates/terraform/samples/services/dialogflow/dialogflow_tool_bearer.tf.tmpl`: New sample.
 
 - **Summary**:
-  - **API Tests**: 6 test cases covering Function, Connector, Data Store specs, and Auth, including exclusivity and negative paths.
-  - **Integration Tests (Samples)**: 5 samples covering all spec variants and advanced Auth.
+  - **API Tests**: 9 test cases covering Function, Connector, Data Store specs, and advanced Auth (API Key, OAuth, Service Agent, Bearer), including exclusivity and negative paths.
+  - **Integration Tests (Samples)**: 8 samples covering all spec variants and advanced Auth.
 
 ## Step 4: Validation & Summary
 

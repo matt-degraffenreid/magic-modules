@@ -1,5 +1,5 @@
 resource "google_dialogflow_tool" "{{$.PrimaryResourceId}}" {
-  location = "us-central1"
+  location = "{{index $.ResourceIdVars "location"}}"
   display_name = "service-agent-tool"
   description = "A tool with OpenAPI spec and Service Agent Auth"
   open_api_spec {

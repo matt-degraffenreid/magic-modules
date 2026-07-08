@@ -77,3 +77,22 @@ Gemini 2.5 Pro
 - `mmv1/templates/terraform/samples/services/dialogflow/dialogflow_generator_with_tools.tf.tmpl`
 - `mmv1/templates/terraform/samples/services/dialogflow/dialogflow_tool_connector.tf.tmpl`
 - `mmv1/templates/terraform/samples/services/dialogflow/dialogflow_tool_datastore.tf.tmpl`
+
+### Review Findings
+
+- **[Review][Decision] Forbidden Playwright Tests Generated**
+  - **Details:** Auditor reported forbidden Playwright tests in `tests/` directory.
+  - **Decision:** Dismiss as noise from rebase. These tests were added in Epic 1 / Story 1.1 and are not part of Story 2.2 changes.
+
+- **[Review][Decision] Scope Creep / Unrelated Changes in Diff**
+  - **Details:** Auditor reported extensive changes. Most are noise from Epic 1. However, Story 2.2 commits include fixes to pre-existing `dialogflow_tool_connector.tf.tmpl` and `dialogflow_tool_datastore.tf.tmpl` samples (replacing `{{$.Project}}` with `test-project`) which are not directly related to linkage but were listed in file list.
+  - **Decision:** Dismiss as noise for the most part. The sample cleanup is minor but should be noted as scope creep if not intended.
+
+- **[Review][Decision] Missing sensitive annotation on oauthToken (Pre-existing/Epic 1)**
+  - **Details:** Security finding reported missing sensitive annotation on `oauthToken` in `Tool.yaml`.
+  - **Decision:** Dismiss for Story 2.2. This is a pre-existing issue in `Tool.yaml` (Epic 1) and not introduced in this story. It should be addressed in Epic 1 scope or a separate patch.
+
+- **[Review][Decision] Missing sensitive annotation on clientKey (Pre-existing/Epic 1)**
+  - **Details:** Security finding reported missing sensitive annotation on `clientKey` in `Tool.yaml`.
+  - **Decision:** Dismiss for Story 2.2. This is a pre-existing issue in `Tool.yaml` (Epic 1) and not introduced in this story. It should be addressed in Epic 1 scope or a separate patch.
+

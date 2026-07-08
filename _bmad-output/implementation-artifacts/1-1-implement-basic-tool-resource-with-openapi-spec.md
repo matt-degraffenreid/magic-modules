@@ -37,7 +37,13 @@ so that I can expose external APIs to my Generators.
   - `mmv1/products/dialogflow/Tool.yaml` (New)
 - **Testing standards summary**: Self-contained acceptance samples are required for every variant (NFR5). For this story, a basic sample with OpenAPI spec is needed.
 
+### ATDD Artifacts
+
+- **Checklist**: `_bmad-output/test-artifacts/atdd-checklist-1-1-implement-basic-tool-resource-with-openapi-spec.md`
+- **API tests**: `tests/api/dialogflow_tool_openapi.spec.ts`
+
 ### Project Structure Notes
+
 
 - Alignment with unified project structure: New resource file `Tool.yaml` under `mmv1/products/dialogflow`.
 - Detected conflicts or variances: None.

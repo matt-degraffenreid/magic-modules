@@ -1,6 +1,9 @@
+---
+baseline_commit: 96c1e6bb53a8f7331b43c9e41a213a899c8287ae
+---
 # Story 1.1: Implement Basic Tool Resource with OpenAPI Spec
 
-Status: ready-for-dev
+Status: review
 
 ## Story
 
@@ -18,15 +21,15 @@ so that I can expose external APIs to my Generators.
 
 ## Tasks / Subtasks
 
-- [ ] Task 1: Create Tool.yaml in `mmv1/products/dialogflow` (AC: 2)
-  - [ ] Define basic resource metadata (name, description, base_url, self_link)
-  - [ ] Add `specification` oneof block with `open_api_spec`
-  - [ ] Add `open_api_spec` properties (textSchema)
-- [ ] Task 2: Generate Provider (AC: 3, 4)
-  - [ ] Run `make provider`
-  - [ ] Verify compilation of the new resource
-- [ ] Task 3: Validate basic functionality (AC: 4)
-  - [ ] Ensure standard CRUD methods are generated
+- [x] Task 1: Create Tool.yaml in `mmv1/products/dialogflow` (AC: 2)
+  - [x] Define basic resource metadata (name, description, base_url, self_link)
+  - [x] Add `specification` oneof block with `open_api_spec`
+  - [x] Add `open_api_spec` properties (textSchema)
+- [x] Task 2: Generate Provider (AC: 3, 4)
+  - [x] Run `make provider`
+  - [x] Verify compilation of the new resource
+- [x] Task 3: Validate basic functionality (AC: 4)
+  - [x] Ensure standard CRUD methods are generated
 
 ## Dev Notes
 
@@ -63,5 +66,9 @@ Gemini 2.5 Pro
 ### Debug Log References
 
 ### Completion Notes List
+- Created Tool.yaml with basic metadata and OpenAPI spec support.
+- Generated provider and verified compilation.
+- Verified standard CRUD methods are generated.
 
 ### File List
+- `mmv1/products/dialogflow/Tool.yaml`

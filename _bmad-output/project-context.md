@@ -5,7 +5,7 @@ date: '2026-07-08'
 sections_completed:
   ['technology_stack', 'language_rules', 'framework_rules', 'testing_rules', 'quality_rules', 'workflow_rules', 'anti_patterns']
 status: 'complete'
-rule_count: 28
+rule_count: 31
 optimized_for_llm: true
 ---
 
@@ -30,6 +30,7 @@ _This file contains critical rules and patterns that AI agents must follow when 
 - **Terraform Field Naming**: Always use snake_case for Terraform field names (even if the API uses camelCase or kebab-case).
 - **API Enums to Terraform Strings**: Always represent REST API enum fields as `TypeString` in Go schema mappings to preserve forwards-compatibility.
 - **Go Mod Tidy/Test constraints**: In magic-modules, do NOT run `go test` or `go mod tidy` directly unless utilizing the make tasks or bazel targets.
+- **`exactly_one_of` Constraint**: Use `exactly_one_of` in MMv1 YAML to effectively enforce mutual exclusivity for `oneof` context blocks, ensuring backward compatibility.
 
 ### Framework-Specific Rules
 
@@ -53,6 +54,7 @@ _This file contains critical rules and patterns that AI agents must follow when 
   - **Tracing Verification**: For failures, run the tests with `WRITE_FILES=true` and trace the outputs across `Test_roundtrip.tf`, `Test_roundtrip.json`, and `Test_export.tf`.
   - **Schema/Constraint Preservation**: Do NOT modify resource schemas or add `ignore_read_extra` to examples to resolve test failures.
 - **Full Generation Fallback**: If generating code for a new resource fails due to missing packages or compilation errors downstream, try a full provider generation (`make provider` or `make tgc`) instead of partial generation.
+- **Language Alignment**: Do NOT generate tests in Playwright/TS or Python within the `tests/` directory as they do not align with the project's primary language (Go) or standard Magic Modules testing practices. Rely on MMv1 YAML samples and downstream Go integration tests.
 
 ### Code Quality & Style Rules
 
@@ -80,6 +82,7 @@ _This file contains critical rules and patterns that AI agents must follow when 
 - **Durable Constraints**:
   - **Security**: Be aware of pre-existing security issues like vulnerable blind string replacement in shared templates (e.g., Dialogflow endpoint template).
   - **Style**: Avoid redundant paths in `exactly_one_of` and misplaced custom code templates.
+- **Backward Compatibility**: Ensure new optional fields preserve backward compatibility (e.g., `summarizationContext`).
 
 ---
 

@@ -1,16 +1,12 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Story 1.1: Implement Basic Tool Resource with OpenAPI Spec API Tests (ATDD)', () => {
-  test.skip('[P0] should create Dialogflow Tool with valid OpenAPI spec', async ({ request }) => {
-    // THIS TEST WILL FAIL - Resource not implemented yet
-    const response = await request.post('/v2/projects/test-project/agent/tools', {
+  test('[P0] should create Dialogflow Tool with valid OpenAPI spec', async ({ request }) => {
+    const response = await request.post('/v2beta1/projects/test-project/locations/us-central1/tools', {
       data: {
-        displayName: 'test-tool',
         description: 'Basic tool with OpenAPI spec',
-        specification: {
-          openApiSpec: {
-            textSchema: 'openapi: 3.0.0...'
-          }
+        openApiSpec: {
+          textSchema: 'openapi: 3.0.0...'
         }
       }
     });

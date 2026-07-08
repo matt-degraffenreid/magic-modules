@@ -1,5 +1,6 @@
 resource "google_dialogflow_tool" "{{$.PrimaryResourceId}}" {
   location = "us-central1"
+  display_name = "my-tool"
   description = "A basic tool with OpenAPI spec"
   open_api_spec {
     text_schema = <<EOF

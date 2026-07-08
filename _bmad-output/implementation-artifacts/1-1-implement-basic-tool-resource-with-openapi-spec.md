@@ -72,3 +72,8 @@ Gemini 2.5 Pro
 
 ### File List
 - `mmv1/products/dialogflow/Tool.yaml`
+
+### Review Findings
+
+- [x] [Review][Decision][Med] Inconsistency in `specification` structure (Flattened vs Nested) — Implementation in `Tool.yaml` flattens `specification` into `openApiSpec` (AD-2), contradicting Spec Task 1. Test fixture `test-data.ts` uses wrapper, but API test uses flattened. Verify API expectations and align. Recommended: fix: Verify API payload structure and align files.
+- [x] [Review][Decision][Low] Missing `displayName` field — Field present in `test-data.ts` fixture but missing in `Tool.yaml`. Clarify if needed by API. Recommended: fix: Add displayName to Tool.yaml if supported by API.

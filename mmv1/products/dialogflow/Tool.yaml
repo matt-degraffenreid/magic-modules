@@ -46,6 +46,11 @@ properties:
     description: |
       The resource name of the tool.
     output: true
+  - name: displayName
+    type: String
+    description: |
+      Required. The human-readable name of the tool, unique within the agent.
+    required: true
   - name: description
     type: String
     description: |

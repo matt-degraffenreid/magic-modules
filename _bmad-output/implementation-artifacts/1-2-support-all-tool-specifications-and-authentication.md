@@ -1,6 +1,9 @@
+---
+baseline_commit: NO_VCS
+---
 # Story 1.2: Support All Tool Specifications and Authentication
 
-Status: ready-for-dev
+Status: review
 
 <!-- Note: Validation is optional. Run validate-create-story for quality check before dev-story. -->
 
@@ -20,18 +23,18 @@ so that I can use diverse data sources and actions.
 
 ## Tasks / Subtasks
 
-- [ ] Task 1: Update `Tool.yaml` with missing specification blocks (AC: 2, 3)
-  - [ ] Add `functionSpec` to `properties`
-  - [ ] Add `connectorSpec` to `properties`
-  - [ ] Add `dataStoreSpec` to `properties`
-  - [ ] Ensure all specs are documented as mutually exclusive (flattened oneof pattern)
-- [ ] Task 2: Implement Authentication configurations (AC: 4, 5)
-  - [ ] Add `authentication` block to `openApiSpec` properties
-  - [ ] Support `apiKeyConfig`, `oauthConfig`, `serviceAgentAuthConfig`, and `bearerTokenConfig`
-  - [ ] Mark credential fields (API Key, Client Secret, Token) as `sensitive: true`
-- [ ] Task 3: Verify and Generate (AC: 3)
-  - [ ] Run `make provider`
-  - [ ] Verify compilation and schema in downstream repo
+- [x] Task 1: Update `Tool.yaml` with missing specification blocks (AC: 2, 3)
+  - [x] Add `functionSpec` to `properties`
+  - [x] Add `connectorSpec` to `properties`
+  - [x] Add `dataStoreSpec` to `properties`
+  - [x] Ensure all specs are documented as mutually exclusive (flattened oneof pattern)
+- [x] Task 2: Implement Authentication configurations (AC: 4, 5)
+  - [x] Add `authentication` block to `openApiSpec` properties
+  - [x] Support `apiKeyConfig`, `oauthConfig`, `serviceAgentAuthConfig`, and `bearerTokenConfig`
+  - [x] Mark credential fields (API Key, Client Secret, Token) as `sensitive: true`
+- [x] Task 3: Verify and Generate (AC: 3)
+  - [x] Run `make provider`
+  - [x] Verify compilation and schema in downstream repo
 
 ## Dev Notes
 
@@ -65,4 +68,13 @@ Gemini 2.5 Pro
 
 ### Completion Notes List
 
+- Updated `Tool.yaml` with `functionSpec`, `connectorSpec`, and `dataStoreSpec`.
+- Expanded `openApiSpec` with detailed `authentication` configuration supporting API Key, OAuth, Service Agent, and Bearer Token.
+- Marked all sensitive credential fields as `sensitive: true`.
+- Verified mutually exclusive documentation for specifications.
+- Generated provider and verified successful compilation.
+
 ### File List
+
+- `mmv1/products/dialogflow/Tool.yaml`
+

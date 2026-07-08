@@ -5,7 +5,7 @@ epic_num: 1
 story_num: 2
 branch: null
 status: in-progress
-updated_at: "2026-07-08T17:57:05Z"
+updated_at: "2026-07-08T18:00:01Z"
 started_at: "2026-07-08T17:53:15Z"
 completed_at: null
 active_seconds: 0
@@ -20,7 +20,7 @@ tea_selected: [atdd, automate]
 tea_rationale: null
 epic_story_count: null
 stories_after_in_epic: null
-completed_phases: [3, 4]
+completed_phases: [3, 4, 5]
 code_review_iterations: 0
 code_review_loop_done: false
 hitl_halt: null

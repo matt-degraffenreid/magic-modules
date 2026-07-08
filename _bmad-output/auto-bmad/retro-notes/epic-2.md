@@ -6,3 +6,7 @@
 - [Phase 5 — dev-story] Making summarizationContext optional preserved backward compatibility while supporting new contexts.
 - [Phase 6 — testarch-automate] Subagent generated Playwright/TS and Python tests in tests/ directory, which do not align with the project's primary language (Go) or standard Magic Modules testing practices.
 - [Phase 6 — testarch-automate] These files were left untracked/removed to avoid polluting the repo, as standard testing in MMv1 is driven by YAML samples and downstream Go provider tests.
+
+## Story 2-2-link-generators-to-tools
+- Fixed generation-blocking errors in Tool samples ($.Project replaced with test-project).
+- Upgraded Generator linkage sample to use real resource reference.

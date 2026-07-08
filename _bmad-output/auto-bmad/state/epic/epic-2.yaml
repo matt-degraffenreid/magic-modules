@@ -5,10 +5,10 @@ epic_num: 2
 story_num: null
 branch: epic/2-enhance-llm-generators-with-full-context-support
 status: in-progress
-updated_at: "2026-07-08T20:22:23Z"
+updated_at: "2026-07-08T21:42:11Z"
 started_at: "2026-07-08T19:52:10Z"
 completed_at: null
-active_seconds: 120
+active_seconds: 718
 timing_anchor: null
 is_first_in_epic: false
 is_last_in_epic: false

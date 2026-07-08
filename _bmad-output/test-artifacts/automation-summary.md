@@ -1,50 +1,40 @@
 ---
-stepsCompleted: ['step-01-preflight-and-context', 'step-02-identify-targets', 'step-03-generate-tests', 'step-03c-aggregate', 'step-04-validate-and-summarize']
-lastStep: 'step-04-validate-and-summarize'
-lastSaved: '2026-07-08T20:10:00Z'
-inputDocuments: ['_bmad-output/implementation-artifacts/2-1-expand-generator-with-all-contexts-and-settings.md']
+stepsCompleted: ['step-01-preflight-and-context', 'step-02-identify-targets', 'step-03c-aggregate']
+lastStep: 'step-03c-aggregate'
+lastSaved: '2026-07-08T21:38:00Z'
+inputDocuments: ['_bmad-output/implementation-artifacts/2-2-link-generators-to-tools.md']
 ---
 
-# Automation Summary - Expand Generator with All Contexts and Settings
+# Automation Summary - Link Generators to Tools
 
 ## Execution Status
 - **Outcome**: done
-- **Status**: 49 tests generated (42 API, 7 Backend)
+- **Status**: Aggregation complete
 - **Detected Stack**: Backend (Go)
 
-## Coverage Plan
+## Preflight Details
+- **Story File:** `_bmad-output/implementation-artifacts/2-2-link-generators-to-tools.md`
+- **ATDD Checklist:** `_bmad-output/test-artifacts/atdd-checklist-2-2-link-generators-to-tools.md`
 
-| Target Field | Test Level | Priority | Justification |
-| --- | --- | --- | --- |
-| `freeFormContext` | Integration (Sample) | P1 | New context, needs coverage |
-| `translationContext` | Integration (Sample) | P1 | New context, needs coverage |
-| `agentFeedbackContext` | Integration (Sample) | P1 | New context, needs coverage |
-| `customerMessageGenerationContext` | Integration (Sample) | P1 | New context, needs coverage |
-| `inferenceParameter` | Integration (Sample) | P0 | Advanced config, critical |
-| `triggerEvent` | Integration (Sample) | P0 | Advanced config, critical |
-| `tunedModel` | Integration (Sample)| P0 | New model option |
+## Aggregation Summary
 
-## Files Created/Updated
+| Metric | Count | Files |
+| --- | --- | --- |
+| Total Tests | 4 | 2 |
+| API Tests | 3 | 1 |
+| Backend Tests | 1 | 1 |
+| Fixtures Needed | 2 | N/A |
 
-### API Tests (Playwright/TS)
-- `tests/api/freeFormContext.spec.ts`
-- `tests/api/translationContext.spec.ts`
-- `tests/api/agentFeedbackContext.spec.ts`
-- `tests/api/customerMessageGenerationContext.spec.ts`
-- `tests/api/inferenceParameter.spec.ts`
-- `tests/api/triggerEvent.spec.ts`
-- `tests/api/tunedModel.spec.ts`
+### Priority Coverage
+- **P0 (Critical):** 2 tests
+- **P1 (High):** 1 test
+- **P2 (Medium):** 1 test
+- **P3 (Low):** 0 tests
 
-### Backend Tests (Python)
-- `tests/unit/test_contexts.py`
-- `tests/integration/test_pipeline.py`
-- `tests/contract/test_external_services.py`
+### Generated Files (in scratch to avoid pollution)
+- `_bmad-output/scratch/tests/api/generator_tools_linkage.spec.ts`
+- `_bmad-output/scratch/tests/backend/resource_dialogflow_generator_tools_test.go`
 
-## Key Assumptions and Risks
-- **Assumption**: Playwright/TS and Python are acceptable for these test types in this context, despite the main project being Go.
-- **Risk**: These tests may not integrate with standard `magic-modules` testing pipelines (VCR/make provider) and might need separate setup.
-- **Risk**: Python tests were generated despite `magic-modules` rule to exclude `.py` from commits (if these are considered scratch/scratchpad).
-
-## Next Recommended Workflow
-- `test-review` to review test quality and applicability.
-- `trace` to link tests to requirements.
+### Notes
+- Tests placed in scratch directory as per MMv1 constraints.
+- API tests provide conceptual validation; Backend test mirrors downstream integration expectations.

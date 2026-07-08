@@ -5,7 +5,7 @@ epic_num: 2
 story_num: null
 branch: epic/2-enhance-llm-generators-with-full-context-support
 status: in-progress
-updated_at: "2026-07-08T19:54:35Z"
+updated_at: "2026-07-08T20:22:23Z"
 started_at: "2026-07-08T19:52:10Z"
 completed_at: null
 active_seconds: 120
@@ -52,7 +52,18 @@ blockers: []
 overrides: {}
 constraints: []
 epic_slug: enhance-llm-generators-with-full-context-support
-active_story: null
-stories_landed: []
+active_story: 2-2-link-generators-to-tools
+stories_landed:
+  - 2-1-expand-generator-with-all-contexts-and-settings
 auto_decisions: []
-uat_items: []
+uat_items:
+  - "[2-1-expand-generator-with-all-contexts-and-settings] Run `curl ...` -> Verify Agent Coaching Context generator creation."
+  - "[2-1-expand-generator-with-all-contexts-and-settings] Run `curl ...` -> Verify Free Form Context generator creation."
+  - "[2-1-expand-generator-with-all-contexts-and-settings] Run `curl ...` -> Verify Translation Context generator creation."
+  - "[2-1-expand-generator-with-all-contexts-and-settings] Run `curl ...` -> Verify Agent Feedback Context generator creation."
+  - "[2-1-expand-generator-with-all-contexts-and-settings] Run `curl ...` -> Verify Customer Message Generation Context generator creation."
+  - "[2-1-expand-generator-with-all-contexts-and-settings] Run `curl ...` -> Verify optionality of summarizationContext."
+  - "[2-1-expand-generator-with-all-contexts-and-settings] Run `curl ...` -> Verify mutual exclusivity of contexts (HTTP 400)."
+  - "[2-1-expand-generator-with-all-contexts-and-settings] Run `curl ...` -> Verify advanced config (inferenceParameter, triggerEvent)."
+  - "[2-1-expand-generator-with-all-contexts-and-settings] Run `curl ...` -> Verify model conflict (HTTP 400)."
+  - "[2-1-expand-generator-with-all-contexts-and-settings] Inspect Generator.yaml -> Verify custom code retained."
